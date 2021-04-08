@@ -6,8 +6,8 @@ from networks import Actor, Critic
 from params import LR, GAMMA, LAMBDA, CLIP, ENTROPY_COEF, VALUE_COEFF, BATCHES_PER_UPDATE, BATCH_SIZE
 
 
-P_COUNT = 2
-P_DELAY = 1
+P_COUNT = 5
+P_DELAY = 100
 
 P_LR = 1e-4
 
@@ -42,7 +42,7 @@ class PPO():
         entropy_loss = -action_distr.entropy().mean()
 
         p_loss = 0
-        for p in self.philosophers():
+        for p in self.philosophers:
             p_state_values = self.critic.get_value(state).squeeze(1)
             p_loss += ((p_state_values - state_values.detach()) ** 2).mean()
 

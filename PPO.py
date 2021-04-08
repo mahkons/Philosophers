@@ -6,8 +6,8 @@ from networks import Actor, Critic
 from params import LR, GAMMA, LAMBDA, CLIP, ENTROPY_COEF, VALUE_COEFF, BATCHES_PER_UPDATE, BATCH_SIZE
 
 
-P_COUNT = 5
-P_DELAY = 100
+P_COUNT = 2
+P_DELAY = 1000
 
 P_LR = 1e-4
 

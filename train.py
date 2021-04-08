@@ -53,12 +53,16 @@ def train():
         trajectories = []
         steps_cnt = 0
         
+        sum_reward = 0
         while len(trajectories) < MIN_EPISODES_PER_UPDATE or steps_cnt < MIN_TRANSITIONS_PER_UPDATE:
             traj = sample_episode(env, ppo)
             steps_cnt += len(traj)
+            sum_reward += sum([r for _, _, r, _ in traj])
             trajectories.append(traj)
         episodes_sampled += len(trajectories)
         steps_sampled += steps_cnt
+
+        print("Collected: {}".format(sum_reward / len(trajectories)))
 
         ppo.update(trajectories)        
         

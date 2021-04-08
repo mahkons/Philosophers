@@ -75,6 +75,8 @@ class PPO():
         self.update_cnt += 1
         if self.update_cnt % P_DELAY == 0:
             self.critic = self.philosophers[0]
+            self.optimizer = self.p_optimizers[0]
+
             self.philosophers.pop(0)
             self.philosophers.append(Critic(self.state_dim).to(self.device))
             self.p_optimizers.pop(0)
